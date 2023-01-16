@@ -44,6 +44,11 @@ public class CategoriaResource {
 		return ResponseEntity.ok(obj);
 	}
 	
+	@GetMapping
+	@ResponseStatus(code = HttpStatus.NOT_IMPLEMENTED)
+	public String listar() {
+		return "REST is working on GET!";
+	}
 	
 	@PostMapping
 	@ResponseStatus(code = HttpStatus.NOT_IMPLEMENTED)
