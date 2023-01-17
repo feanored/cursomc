@@ -1,4 +1,4 @@
-package com.binha.cursomc.domain;
+package com.binha.cursomc.domain.enums;
 
 public enum TipoCliente {
 	

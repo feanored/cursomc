@@ -1,5 +1,7 @@
 package com.binha.cursomc.domain;
 
+import com.binha.cursomc.domain.enums.StatusPagamento;
+
 import jakarta.persistence.Entity;
 
 @Entity
@@ -22,6 +24,5 @@ public class PagamentoComCartao extends Pagamento{
 	public void setNumeroDeParcelas(Integer numeroDeParcelas) {
 		this.numeroDeParcelas = numeroDeParcelas;
 	}
-	
 	
 }

@@ -3,7 +3,9 @@ package com.binha.cursomc.domain;
 import java.io.Serializable;
 import java.util.Objects;
 
+import com.binha.cursomc.domain.enums.StatusPagamento;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -22,7 +24,7 @@ public abstract class Pagamento implements Serializable {
 	private Integer id;
 	private Integer status;
 	
-	@JsonBackReference
+	@JsonIgnore
 	@OneToOne
 	@JoinColumn(name="pedido_id")
 	@MapsId

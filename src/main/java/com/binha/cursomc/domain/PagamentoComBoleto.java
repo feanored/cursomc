@@ -2,6 +2,7 @@ package com.binha.cursomc.domain;
 
 import java.util.Date;
 
+import com.binha.cursomc.domain.enums.StatusPagamento;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.Entity;
@@ -18,7 +19,8 @@ public class PagamentoComBoleto extends Pagamento {
 	
 	public PagamentoComBoleto() {}
 
-	public PagamentoComBoleto(Integer id, StatusPagamento status, Pedido pedido, Date dataVencimento, Date dataPagamento) {
+	public PagamentoComBoleto(Integer id, StatusPagamento status, Pedido pedido, 
+			Date dataVencimento, Date dataPagamento) {
 		super(id, status, pedido);
 		this.dataPagamento = dataPagamento;
 		this.dataVencimento = dataVencimento;
