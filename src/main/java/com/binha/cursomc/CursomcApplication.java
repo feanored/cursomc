@@ -15,6 +15,7 @@ import com.binha.cursomc.domain.Cidade;
 import com.binha.cursomc.domain.Cliente;
 import com.binha.cursomc.domain.Endereco;
 import com.binha.cursomc.domain.Estado;
+import com.binha.cursomc.domain.ItemPedido;
 import com.binha.cursomc.domain.Pagamento;
 import com.binha.cursomc.domain.PagamentoComBoleto;
 import com.binha.cursomc.domain.PagamentoComCartao;
@@ -27,6 +28,7 @@ import com.binha.cursomc.repositories.CidadeRepository;
 import com.binha.cursomc.repositories.ClienteRepository;
 import com.binha.cursomc.repositories.EnderecoRepository;
 import com.binha.cursomc.repositories.EstadoRepository;
+import com.binha.cursomc.repositories.ItemPedidoRepository;
 import com.binha.cursomc.repositories.PagamentoRepository;
 import com.binha.cursomc.repositories.PedidoRepository;
 import com.binha.cursomc.repositories.ProdutoRepository;
@@ -62,6 +64,9 @@ public class CursomcApplication implements CommandLineRunner{
 	
 	@Autowired
 	private PagamentoRepository pagamentoRepo;
+	
+	@Autowired
+	private ItemPedidoRepository itemPedidoRepo;
 	
 	@Override
 	public void run(String... args) throws Exception {
@@ -124,6 +129,19 @@ public class CursomcApplication implements CommandLineRunner{
 		
 		pedidoRepo.saveAll(Arrays.asList(ped1, ped2));
 		pagamentoRepo.saveAll(Arrays.asList(pagto1, pagto2));
+		
+		ItemPedido ip1 = new ItemPedido(ped1, prods.get(0), 0.0, 1, 2000.0);
+		ItemPedido ip2 = new ItemPedido(ped1, prods.get(2), 0.0, 2, 80.0);
+		ItemPedido ip3 = new ItemPedido(ped2, prods.get(1), 100.0, 1, 800.0);
+		
+		ped1.getItensPedido().addAll(Arrays.asList(ip1, ip2));
+		ped2.getItensPedido().add(ip3);
+		
+		prods.get(0).getItensPedido().add(ip1);
+		prods.get(1).getItensPedido().add(ip3);
+		prods.get(2).getItensPedido().add(ip2);
+		
+		itemPedidoRepo.saveAll(Arrays.asList(ip1, ip2, ip3));
 	}
 
 }
