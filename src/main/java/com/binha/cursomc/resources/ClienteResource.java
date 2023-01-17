@@ -29,33 +29,4 @@ public class ClienteResource {
 		return ResponseEntity.ok(obj);
 	}
 	
-	@GetMapping
-	@ResponseStatus(code = HttpStatus.NOT_IMPLEMENTED)
-	public String listar() {
-		return "REST is working on GET!";
-	}
-	
-	@PostMapping
-	@ResponseStatus(code = HttpStatus.NOT_IMPLEMENTED)
-	public String cadastrar() {
-		return "REST is working on POST!";
-	}
-	
-	@PutMapping
-	@ResponseStatus(code = HttpStatus.NOT_IMPLEMENTED)
-	public String atualizar() {
-		return "REST is working on PUT!";
-	}
-	
-	@PatchMapping
-	@ResponseStatus(code = HttpStatus.NOT_IMPLEMENTED)
-	public String resetar() {
-		return "REST is working on PATCH!";
-	}
-	
-	@DeleteMapping
-	@ResponseStatus(code = HttpStatus.NOT_IMPLEMENTED)
-	public String deletar() {
-		return "REST is working on DELETE!";
-	}
 }

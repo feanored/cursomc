@@ -15,7 +15,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
 @Entity
@@ -35,8 +34,11 @@ public class Cliente implements Serializable {
 	private List<Endereco> enderecos = new ArrayList<>();
 	
 	@ElementCollection
-	@CollectionTable(name="TELEFONE") // relacionamento fraco
+	@CollectionTable(name="TELEFONE") // relacionamento-fraco
 	private Set<String> telefones = new HashSet<>();
+	
+	@OneToMany(mappedBy="cliente")
+	private List<Pedido> pedidos = new ArrayList<>();
 	
 	public Cliente() {}
 
@@ -105,6 +107,14 @@ public class Cliente implements Serializable {
 		this.telefones = telefones;
 	}
 
+	public List<Pedido> getPedidos() {
+		return pedidos;
+	}
+
+	public void setPedidos(List<Pedido> pedidos) {
+		this.pedidos = pedidos;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -121,7 +131,5 @@ public class Cliente implements Serializable {
 		Cliente other = (Cliente) obj;
 		return Objects.equals(id, other.id);
 	}
-	
-	
 	
 }
