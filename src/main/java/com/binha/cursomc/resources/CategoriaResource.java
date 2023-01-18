@@ -29,6 +29,12 @@ public class CategoriaResource {
 	@Autowired
 	CategoriaService service;
 	
+	@GetMapping
+	@ResponseStatus(code = HttpStatus.NOT_IMPLEMENTED)
+	public String listar() {
+		return "HTTP is working on GET!";
+	}
+	
 	@GetMapping(path="/algumas")
 	public List<Categoria> listarAlgumas() {
 		Categoria cat1 = new Categoria(1, "Informática");
@@ -42,40 +48,36 @@ public class CategoriaResource {
 	}
 	
 	@GetMapping(value="/{id}")
-	public ResponseEntity<?> buscar(@PathVariable Integer id) {
-		Categoria obj = service.find(id);
+	public ResponseEntity<Categoria> buscar(@PathVariable Integer id) {
+		Categoria obj = service.buscar(id);
 		return ResponseEntity.ok(obj);
-	}
-	
-	@GetMapping
-	@ResponseStatus(code = HttpStatus.NOT_IMPLEMENTED)
-	public String listar() {
-		return "HTTP is working on GET!";
-	}
+	}	
 	
 	@PostMapping
-	public ResponseEntity<Void> cadastrar(@RequestBody Categoria obj) {
-		obj = service.insert(obj);
+	public ResponseEntity<Void> inserir(@RequestBody Categoria obj) {
+		obj = service.inserir(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
 	
-	@PutMapping
-	@ResponseStatus(code = HttpStatus.NOT_IMPLEMENTED)
-	public String atualizar() {
-		return "HTTP is working on PUT!";
+	@PutMapping(value="/{id}")
+	public ResponseEntity<Void> atualizar(@RequestBody Categoria obj, @PathVariable Integer id) {
+		obj.setId(id);
+		obj = service.atualizar(obj);
+		return ResponseEntity.noContent().build();
 	}
 	
+	@DeleteMapping(value="/{id}")
+	public ResponseEntity<Void> deletar(@PathVariable Integer id) {
+		service.deletar(id);
+		return ResponseEntity.noContent().build();
+	}
+	
+
 	@PatchMapping
 	@ResponseStatus(code = HttpStatus.NOT_IMPLEMENTED)
 	public String resetar() {
 		return "HTTP is working on PATCH!";
-	}
-	
-	@DeleteMapping
-	@ResponseStatus(code = HttpStatus.NOT_IMPLEMENTED)
-	public String deletar() {
-		return "HTTP is working on DELETE!";
 	}
 }
