@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.binha.cursomc.domain.Categoria;
+import com.binha.cursomc.dto.CategoriaDTO;
 import com.binha.cursomc.services.CategoriaService;
 
 @RestController
@@ -30,9 +31,10 @@ public class CategoriaResource {
 	CategoriaService service;
 	
 	@GetMapping
-	@ResponseStatus(code = HttpStatus.NOT_IMPLEMENTED)
-	public String listar() {
-		return "HTTP is working on GET!";
+	public ResponseEntity<List<CategoriaDTO>> buscarTodas() {
+		List<Categoria> list = service.buscarTodas();
+		List<CategoriaDTO> listDTO = list.stream().map(obj -> new CategoriaDTO(obj)).toList();
+		return ResponseEntity.ok().body(listDTO);
 	}
 	
 	@GetMapping(path="/algumas")
@@ -50,7 +52,7 @@ public class CategoriaResource {
 	@GetMapping(value="/{id}")
 	public ResponseEntity<Categoria> buscar(@PathVariable Integer id) {
 		Categoria obj = service.buscar(id);
-		return ResponseEntity.ok(obj);
+		return ResponseEntity.ok().body(obj);
 	}	
 	
 	@PostMapping
