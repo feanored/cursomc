@@ -74,6 +74,11 @@ public class CursomcApplication implements CommandLineRunner{
 		cats.add(new Categoria(null, "Informática"));
 		cats.add(new Categoria(null, "Escritório"));
 		cats.add(new Categoria(null, "Recursos humanos"));
+		cats.add(new Categoria(null, "Cama, mesa e banho"));
+		cats.add(new Categoria(null, "Eletrônicos"));
+		cats.add(new Categoria(null, "Jardinagem"));
+		cats.add(new Categoria(null, "Decoração"));
+		cats.add(new Categoria(null, "Perfumaria"));
 		
 		List<Produto> prods = new ArrayList<>();
 		prods.add(new Produto(null, "Computador", 2000.0));
