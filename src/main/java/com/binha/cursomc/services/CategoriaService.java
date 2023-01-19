@@ -11,6 +11,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.binha.cursomc.domain.Categoria;
+import com.binha.cursomc.dto.CategoriaDTO;
 import com.binha.cursomc.repositories.CategoriaRepository;
 import com.binha.cursomc.services.exceptions.DataIntegrityException;
 import com.binha.cursomc.services.exceptions.ObjectNotFoundException;
@@ -21,6 +22,10 @@ public class CategoriaService {
 	@Autowired
 	private CategoriaRepository repo;
 
+	public Categoria fromDTO(CategoriaDTO dto) {
+		return new Categoria(dto.getId(), dto.getNome());
+	}
+	
 	public Categoria buscar(Integer id) {
 		Optional<Categoria> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
