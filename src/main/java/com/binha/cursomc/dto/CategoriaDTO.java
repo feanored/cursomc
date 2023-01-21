@@ -9,13 +9,6 @@ import jakarta.validation.constraints.Size;
 
 public class CategoriaDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
-	public CategoriaDTO() {}
-	
-	public CategoriaDTO(Categoria cat) {
-		setId(cat.getId());
-		setNome(cat.getNome());
-	}
 
 	private Integer id;
 
@@ -23,6 +16,13 @@ public class CategoriaDTO implements Serializable {
 	@Size(min = 5, max = 80, message="O tamanho deve ser entre 5 e 80 caracteres")
 	private String nome;
 
+	public CategoriaDTO() {}
+	
+	public CategoriaDTO(Categoria cat) {
+		setId(cat.getId());
+		setNome(cat.getNome());
+	}	
+	
 	public Integer getId() {
 		return id;
 	}
